@@ -67,9 +67,9 @@
   <button type="submit" class="btn btn-sm btn-primary">Submit</button>
 </form>
 <div class="mt-3">
-  <a href="{{route('admin#profile')}}">
-    <button  class="btn btn-sm btn-danger">Home</button>
-  </a>
+  <!-- <a href="{{route('admin#profile')}}"> -->
+    <button onclick="window.location.href='{{ route('admin#profile')}}';" style="cursor: pointer;" class="btn btn-sm btn-danger">Home</button>
+  <!-- </a> -->
 </div>
 
 @endsection

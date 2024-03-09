@@ -1,7 +1,24 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<h3>This is List Blade</h3>
+<!-- success delete -->
+@if (Session::has('successListDelete'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{Session::get('successListDelete')}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+<!-- unsuccessfully delete -->
+@if (Session::has('unsuccessListDelete'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{Session::get('unsuccessListDelete')}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
 <!-- {{$userList}} -->
 
 <table class="table">
@@ -21,7 +38,7 @@
     ?>
   @foreach ($userList as $user)
   <tr>
-      <th scope="row">{{$i}}</th>
+      <th scope="row">{{$user->id}}</th>
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
       @if ($user->phone_number === null || $user->phone_number === '')
@@ -35,10 +52,12 @@
       <td>{{$user->address}}</td>
       @endif
       <td>
-      <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Delete
-        </button>
-        <!-- Modal -->
+        <!-- delete start -->
+        <form action="{{route('admin#listDestory',$user->id)}}" method="POST">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+              <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -55,7 +74,15 @@
       </div>
     </div>
   </div>
-</div>
+</div>               
+        </form>
+        <!-- delete end -->
+      <!-- <a href="{{route('admin#listDestory',$user->id)}}">
+      <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+        </button>
+      </a> -->
+  
       </td>
       <?php
       $i ++;

@@ -12441,8 +12441,9 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 .navbar-search-block.navbar-search-open {
-  display: -ms-flexbox;
-  display: flex;
+  /* display: -ms-flexbox; */
+  /* display: flex; */
+  background-color: blue !important;
 }
 
 .navbar-search-block .input-group {

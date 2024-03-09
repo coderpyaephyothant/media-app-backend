@@ -38,4 +38,9 @@ class Post extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,10 +19,11 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $categoryIds = \App\Models\Category::pluck('category_id')->toArray();
         return [
-            'category_id' => $this->faker->numberBetween(1,3),
-            'title' => $this->faker->sentence(10),
-            'description' => $this->faker->sentence(45),
+            'description' => $this->faker->sentence(15),
+            'title'       => $this->faker->sentence,
+            'category_id' => $this->faker->randomElement($categoryIds)
         ];
     }
 }

@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
     />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}" />
     <!-- Ionicons -->
     <link
       rel="stylesheet"
@@ -22,43 +22,99 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link
       rel="stylesheet"
-      href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"
+      href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"
     />
     <!-- iCheck -->
     <link
       rel="stylesheet"
-      href="plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+      href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}"
     />
     <!-- JQVMap -->
-    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css" />
+    <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css')}}" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}" />
     <!-- overlayScrollbars -->
     <link
       rel="stylesheet"
-      href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"
+      href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"
     />
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}" />
     <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css" />
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css')}}" />
+    <style>
+      .customizeSearch{
+        width: 50% !important;
+        margin-left: 33% !important;
+      }
+      .myColor{
+        background-color: #014f86 !important;
+      }
+      .myColorTwo{
+        background-color: #a9d6e5 !important;
+      }
+      .myButtonColorOne{
+        background-color: #f1c0e8 !important;
+      }
+      .myTextColor{
+        color: #a9d6e5 !important;
+      }
+    </style>
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <nav class="main-header navbar navbar-expand navbar-light myColor">
         <!-- Left navbar links -->
+
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"
               ><i class="fas fa-bars"></i
             ></a>
           </li>
-          
         </ul>
-
+            <?php
+             $currentRoute = request()->route()->getName();
+              if ($currentRoute == "admin#list") {
+                echo('admeinlist');
+                ?> 
+              <?php
+              }
+            ?>
         <!-- Right navbar links -->
+
+        
         <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+              <div class="navbar-search-block customizeSearch">
+              @if($currentRoute == "admin#list")
+                <form class="form-inline" action="{{route('admin#ListSearch')}}" method="post">
+                  @csrf
+                  <div class="input-group input-group-sm">
+                    <input
+                      class="form-control form-control-navbar"
+                      type="search"
+                      name="search_item"
+                      placeholder="Search"
+                      aria-label="Search"/>
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <button
+                        class="btn btn-navbar"
+                        type="button"
+                        data-widget="navbar-search"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                @endif
+              </div>
+        </li>
           <!-- Navbar Search -->
           <li class="nav-item">
             <a
@@ -69,31 +125,8 @@
             >
               <i class="fas fa-search"></i>
             </a>
-            <div class="navbar-search-block">
-              <form class="form-inline">
-                <div class="input-group input-group-sm">
-                  <input
-                    class="form-control form-control-navbar"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <button
-                      class="btn btn-navbar"
-                      type="button"
-                      data-widget="navbar-search"
-                    >
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
+            
+</li>
 
           <!-- Messages Dropdown Menu -->
           <li class="nav-item dropdown">
@@ -130,7 +163,7 @@
                 <!-- Message Start -->
                 <div class="media">
                   <img
-                    src="dist/img/user8-128x128.jpg"
+                    src="{{ asset('dist/img/user8-128x128.jpg')}}"
                     alt="User Avatar"
                     class="img-size-50 img-circle mr-3"
                   />
@@ -154,7 +187,7 @@
                 <!-- Message Start -->
                 <div class="media">
                   <img
-                    src="dist/img/user3-128x128.jpg"
+                    src="{{ asset('dist/img/user3-128x128.jpg')}}"
                     alt="User Avatar"
                     class="img-size-50 img-circle mr-3"
                   />
@@ -214,7 +247,9 @@
           <li class="nav-item">
           <form action="{{route('logout')}}" method="POST">
           @csrf
-          <button class="btn btn-sm btn-outline-warning ml-3">Logout</button>
+          <button class="btn myButtonColorOne ml-3">
+          <i class="fa-solid fa-lock"></i>  
+          Logout</button>
         </form>
           </li>
           
@@ -224,16 +259,16 @@
       <!-- /.navbar -->
 
       <!-- Main Sidebar Container -->
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <aside class="main-sidebar myColor elevation-1">
         <!-- Brand Logo -->
         <a href="#" class="brand-link">
           <img
-            src="dist/img/AdminLTELogo.png"
+            src="{{ asset('dist/img/AdminLTELogo.png')}}"
             alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3"
             style="opacity: 0.8"
           />
-          <span class="brand-text font-weight-light">Media Admin</span>
+          <span class="brand-text font-weight-light myTextColor">Media Admin</span>
         </a>
 
         <!-- Sidebar -->
@@ -242,13 +277,21 @@
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
               <img
-                src="dist/img/user8-128x128.jpg"
+                src="{{ asset('dist/img/user8-128x128.jpg')}}"
                 class="img-circle elevation-2"
                 alt="User Image"
               />
             </div>
             <div class="info">
-              <a href="#" class="d-block">Admin Pyae Phyo Thant</a>
+              <a href="#" class="d-block">
+              <span class="brand-text font-weight-light myTextColor">
+              @if(auth()->check())
+                Welcome, {{ substr(auth()->user()->name, 0, 20) }}
+              @else
+                  Welcome, Guest
+              @endif
+              </span>
+                </a>
             </div>
           </div>
 
@@ -279,37 +322,41 @@
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a href="{{route('admin#profile')}}" class="nav-link">
+                <a href="{{route('admin#profile')}}" class="nav-link myTextColor">
                   <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
-                  <i class="fa-solid fa-user"></i>
-                  <p>
-                    Admin Profile
-                    <!-- <i class="right fas fa-angle-left"></i> -->
+                  <i class="fa-solid fa-user "></i>
+                  <p class="pl-2 ">Profile
                   </p>
                 </a>
                   <li class="nav-item">
-                    <a href="{{route('admin#list')}}" class="nav-link">
+                    <a href="{{route('admin#list')}}" class="nav-link myTextColor">
                     <i class="fa-solid fa-list"></i>
-                      <p>Lists</p>
+                      <p class="pl-2">Lists</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('admin#post')}}" class="nav-link">
-                    <i class="fa-solid fa-paper-plane"></i>
-                      <p>Posts</p>
+                    <a href="{{route('admin#post')}}" class="nav-link myTextColor">
+                    <i class="fa-solid fa-address-card"></i>
+                      <p class="pl-2">Posts</p>
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{route('admin#category')}}" class="nav-link myTextColor">
+                    <i class="fa-solid fa-pen"></i>
+                      <p class="pl-2">Catetories</p>
+                    </a>
+                  </li>
+                  <!-- <li class="nav-item">
                     <a href="{{route('admin#trendPost')}}" class="nav-link">
                     <i class="fa-regular fa-star"></i>
-                      <p>Trend Posts</p>
+                      <p class="pl-2">Trend Posts</p>
                     </a>
-                  </li>
+                  </li> -->
               </li>
 
               
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle text-danger"></i>
                   <p class="text">Important</p>
@@ -326,7 +373,7 @@
                   <i class="nav-icon far fa-circle text-info"></i>
                   <p>Informational</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
@@ -335,7 +382,7 @@
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper myColorTwo">
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <div class="container-fluid">
@@ -350,8 +397,8 @@
         <section class="content">
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-8" >@yield('content')</div>
+            <div class="row">
+              @yield('content')
             </div>
           </div>
         </section>
@@ -359,9 +406,9 @@
       <!-- /.content-wrapper -->
       <footer class="main-footer">
         <strong
-          <a href="#">Media Project Admin Panel</a>.</strong
+          <a href="#">Media Project Admin Panel Pyae </a>.</strong
         >
-        All rights reserved.
+        All rights reserved. 2023-2024
         <div class="float-right d-none d-sm-inline-block">
           <!-- <b>Version</b> 3.2.0 -->
         </div>
@@ -376,38 +423,38 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge("uibutton", $.ui.button);
     </script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js')}}"></script>
     <!-- Sparkline -->
-    <script src="plugins/sparklines/sparkline.js"></script>
+    <script src="{{ asset('plugins/sparklines/sparkline.js')}}"></script>
     <!-- JQVMap -->
-    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
     <!-- jQuery Knob Chart -->
-    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
     <!-- daterangepicker -->
-    <script src="plugins/moment/moment.min.js"></script>
-    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="{{ asset('plugins/moment/moment.min.js')}}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
     <!-- Summernote -->
-    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
     <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js"></script>
+    <script src="{{ asset('dist/js/adminlte.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+    <script src="{{ asset('dist/js/demo.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard.js"></script>
+    <script src="{{ asset('dist/js/pages/dashboard.js')}}"></script>
   </body>
 </html>

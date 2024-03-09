@@ -35,29 +35,30 @@ class UserTableSeeder extends Seeder
         //         'address' => $faker->address,
         //         'password' => Hash::make('password'), // You can set a default password
         //         'remember_token' => Str::random(10),
-        //     ]);
+        //     ]);`
         // }
+        DB::table('users')->truncate();
         DB::table('users')->insert([
             [
                 'name' => 'AdminOne',
                 'email' => 'adminOne@gmail.com',
                 'phone_number' => '09112233445',
                 'address' => 'new york city',
-                'password' => Hash::make('adminOne'),
+                'password' => Hash::make('password'),
             ],
             [
                 'name' => 'AdminTwo',
                 'email' => 'adminTwo@gmail.com',
                 'phone_number' => '09112233446',
                 'address' => 'canada',
-                'password' => Hash::make('adminTwo'),
+                'password' => Hash::make('password'),
             ],
             [
                 'name' => 'AdminThree',
                 'email' => 'adminThree@gmail.com',
                 'phone_number' => '09112233447',
                 'address' => 'japan',
-                'password' => Hash::make('adminThree'),
+                'password' => Hash::make('password'),
             ],
         ]);
     }
