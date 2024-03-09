@@ -1,9 +1,12 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <!-- <x-authentication-card-logo /> -->
+            <a href="{{route('home')}}" 
+            style="color: #a9d6e5 !important;">
+            <h3>Return</h3>
+            </a>
         </x-slot>
-
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -46,3 +49,8 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+<style>
+    .myColor{
+        background-color: #014f86 !important;
+      }
+</style>

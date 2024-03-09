@@ -22,7 +22,7 @@ use App\Http\Controllers\TrendPost\TrendPostController;
 // });
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
