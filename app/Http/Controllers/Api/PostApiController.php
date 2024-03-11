@@ -16,4 +16,23 @@ class PostApiController extends Controller
             'posts' => $newPosts
         ]);
     }
+
+    // search posts
+    public function searchPosts(Request $request){
+        $searchedKeywards = $request->search;
+        $data = Post::where('title','like','%'.$searchedKeywards.'%')
+                        ->orWhere('description', 'like', '%' . $searchedKeywards . '%')->get();
+        return response()->json([
+            'posts' => $data
+        ]);
+    }
+
+    // filtered By Catergory
+    public function filteredByCategory(Request $request){
+        $searchedID = $request->filteredByCategory;
+        $posts = Post::where('category_id', $searchedID)->get();
+        return response()->json([
+            'post' => $posts
+        ]);
+    }
 }

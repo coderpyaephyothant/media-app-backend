@@ -40,11 +40,11 @@
     </head>
     <body class="" style="background-color: #014f86 !important;">
     <div class="d-flex justify-content-center">
-        <h3 class="text-align-center mt-5 mb-5 myTextColor">မင်္ဂလာပါ။ </h3>
+        <!-- <h3 class="text-align-center mt-5 mb-5 myTextColor">မင်္ဂလာပါ။ </h3> -->
     </div>
         <div class="d-flex justify-content-center">
             
-        <h3 class="text-align-center mt-5 mb-5 myTextColor">Media Project (Backend) by Pyae Phyo Thant</h3>
+        <h3 class="text-align-center mt-5 mb-5 myTextColor">Media Admin Panel (Backend) by Pyae Phyo Thant</h3>
         </div>
         <div class="col-12 d-flex justify-content-center">
         <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0 "> -->
@@ -55,12 +55,12 @@
                     @else
                         <a href="{{ route('login') }}" class="myTextColor">
                         
-                            <h3>Log in</h3>
+                            <h4>Log in</h4>
                         </a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 myTextColor">
-                                <h3>Register</h3>
+                                <h4>Register</h4>
                             </a>
                         @endif
                     @endauth
