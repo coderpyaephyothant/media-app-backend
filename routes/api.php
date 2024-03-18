@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ActivityLogController;
 use App\Http\Controllers\Api\CategoryApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,8 @@ Route::get('user/all-categories',[CategoryApiController::class,'getCategories'])
 Route::post('user/searchPosts',[PostApiController::class,'searchPosts']);
 // filterdPostsByCategory
 Route::post('user/filtered-by-category',[PostApiController::class,'filteredByCategory']);
+// getPostById
+Route::get('user/post-detail/{id}',[PostApiController::class,'getById']);
+// activityLog
+Route::post('user/post/{id}/activity-log-view',[ActivityLogController::class,'activeLogView']);
+Route::get('user/post/{id}/views',[ActivityLogController::class,'views']);

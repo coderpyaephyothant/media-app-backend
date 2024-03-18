@@ -56,7 +56,11 @@
                         </div>
 
                         <div>
-                        <a href="{{route('admin#post')}}" class="btn btn-outline-info" type="button">
+                        @php
+                        $previousUrl = url()->previous();
+                        $previousRouteName = Str::afterLast($previousUrl, '/');
+                    @endphp           
+                        <a href="{{ $previousRouteName === 'admin-trend-post' ? route('admin#trendPost') : route('admin#post') }}" class="btn btn-outline-info" type="button">
                             <i class="fa-solid fa-house"></i>
                             <i class="fa-solid fa-arrow-turn-up"></i>
                         </a>

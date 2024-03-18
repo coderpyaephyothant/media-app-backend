@@ -35,4 +35,12 @@ class PostApiController extends Controller
             'post' => $posts
         ]);
     }
+    // getById
+    public function getById(Request $request){
+        $targetId = $request->id;
+        $post = Post::where('post_id',$targetId)->get();
+        return response()->json([
+            'post' => $post 
+        ]);
+    }
 }

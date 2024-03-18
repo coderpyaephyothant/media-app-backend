@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ActionLog extends Model
 {
     use HasFactory;
-    use HasApiTokens, HasFactory, Notifiable;
      /**
      * The attributes that are mass assignable.
      *

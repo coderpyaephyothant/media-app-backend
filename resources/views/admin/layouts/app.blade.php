@@ -59,6 +59,10 @@
       .myTextColor{
         color: #a9d6e5 !important;
       }
+      .page-item.active .page-link{
+        background-color: #014f86;
+        border-color: #014f86;
+      }
     </style>
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
@@ -342,16 +346,16 @@
                   </li>
                   <li class="nav-item">
                     <a href="{{route('admin#category')}}" class="nav-link myTextColor">
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-folder-tree"></i>
                       <p class="pl-2">Catetories</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                    <a href="{{route('admin#trendPost')}}" class="nav-link">
-                    <i class="fa-regular fa-star"></i>
-                      <p class="pl-2">Trend Posts</p>
+                  <li class="nav-item">
+                    <a href="{{route('admin#trendPost')}}" class="nav-link myTextColor">
+                    <i class="fa-solid fa-star"></i>
+                      <p class="pl-2">Action Logs</p>
                     </a>
-                  </li> -->
+                  </li>
               </li>
 
               
